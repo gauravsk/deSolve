@@ -44,6 +44,14 @@ em {
 > $$ \frac{dN}{dt} = (rN) $$
 > $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
 <br>
+
+--- bg:#404040
+
+> From the simple...
+<br>
+> $$ \frac{dN}{dt} = (rN) $$
+> $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
+<br
 > To the slightly more complicated
 > $$ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) $$
 
@@ -56,11 +64,6 @@ $$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
 <br>
 
 $$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ $$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
-
-
-![](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/ecology_models_1)
-<br>
-![](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/ecology_models_2)
 
 
 --- .class #id bg:#404040
@@ -96,6 +99,13 @@ $$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} 
 <align = "center">
 > - This is a pair of <font size= 30 color = #FF6161> ***Ordinary Differential Equations*** (ODEs) </font> 
 </align>
+
+--- .class #id bg:#404040
+## ODEs track the <font color = #FF6161> change </font> in variables of interest
+
+$$ \frac{dN}{dt} = (rN)\left(1-\frac{N + \alpha*N_{1}}{K_{2}}\right) $$
+
+> - The rate of change of `N` is a function of the value of `N` at the previous time step (`t-1`) and the system's parameters (e.g. r, $\alpha$)
 
 --- .class #id bg:#404040
 ## Dynamic models require dynamic solutions
@@ -325,3 +335,92 @@ plot.all(lvout)
 ```
 
 ![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10.png) 
+
+--- bg:#404040
+##   Other ecological models
+
+> - $$ \frac{dN}{dT} = rN - aNP $$
+<br>
+> - $$ \frac{dP}{dT} = baNP - dP $$
+
+> - This is another set of ODEs
+
+--- bg:#404040
+## Implementing the L-V predator-prey models
+
+
+```r
+lvpp <- function(pp.time,pp.init,pp.params,prey_K=FALSE) {
+  with (as.list(c(pp.time,pp.init,pp.params)), {
+  
+    # Parameters
+    # N = prey population size; P = predator population size
+    # r = intrinsic growth rate of prey
+    # a = predation efficiency
+    # b = conversion efficiency of prey into predator
+    # d = intrinsic dseath rate of predator
+    # prey_k = carrying capacity for prey; only used if user-defined
+    
+     if (exists("prey_k")) {
+       dNdt <- ((r*N)*(1-(N/prey_k)))- (a*N*P) 
+     }
+      else {
+        dNdt <- (r*N) - (a*N*P)
+      }
+    
+      dPdt <- (b*a*N*P) - (d*P)
+    
+      return(list(c(dNdt,dPdt)))
+  })
+}
+```
+
+---bg:#404040
+## Other ecological models
+
+
+```r
+# Set ODE parameters
+# These parameters give really whacky results, should try to find better parameters for demonstration!
+pp.time <-seq(0,1000,by=.1)
+pp.params <- c(r=0.1,a=0.005,d=0.01,b=.1,prey_k=500)
+
+# Set pp.initial population sizes of Prey (N) and Predator (P)
+pp.init = c(N=25,P=10)
+# Run the ODE
+
+lvppout<-floor(as.data.frame(ode(func=lvpp,y=pp.init,parms=pp.params,times=pp.time)))
+str (lvppout)
+```
+
+```
+## 'data.frame':	10001 obs. of  3 variables:
+##  $ time: num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ N   : num  25 25 25 25 25 25 25 25 25 26 ...
+##  $ P   : num  10 10 10 10 10 10 10 10 10 10 ...
+```
+
+--- bg:#404040
+
+## Other Ecological Models
+
+
+```r
+par(mfrow=c(1,2),bg="white")
+# Plot P vs N; draw in the starting N and P parameters, draw in the ZNGIs
+plot(lvppout$P~lvppout$N,ylim=c(0,max(lvppout$P)+20),type="l",xlab="Prey population size",ylab="Predator population size")
+points(x=pp.init["N"],y=pp.init["P"],col="red",pch=19)
+abline(v=pp.params["d"]/(pp.params["b"]*pp.params["a"]))
+abline(h=pp.params["r"]/pp.params["a"])
+
+# Plot N & P vs pp.time
+plot(lvppout$N~pp.time,type="l",xlab="pp.time",ylab="Population Size",ylim=c(0,max(max(lvout$N),max(lvout$P))+50))
+points(lvppout$P~pp.time,col="red",type="l")
+legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="n")
+```
+
+--- bg:#404040
+
+## Other Ecological Models 
+
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14.png) 
