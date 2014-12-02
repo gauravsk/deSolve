@@ -77,12 +77,12 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 > - Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.
 > - There is a limited supply of coffee in the department, for which the two groups compete. 
 
-> - ![labs competing for coffee](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/competition.svg)
+> - ![labs competing for coffee](images/competition.svg)
 <br>
 
 --- .class #id bg:#404040
 
-![labs competing for coffee](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/competition.svg)
+![labs competing for coffee](/images/competition.svg)
 <br>
 
 > - Grad students' coffee consumption is decreased by others in the same group (***intraspecific*** competition) and grad students in other groups (***interspecific*** competition)
