@@ -79,7 +79,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 ## Refresher on Differential Equations
 
-> - Differential equations are used when the <font color = #FF6161 size = 28> rate of change of a quantity depends on the quantity itself </font>
+> - Differential equations are used when the <font color = #FF6161 size = 20> rate of change of a quantity depends on the quantity itself </font>
 <br>
 > - E.g "How fast you eat is a function of how much food you have eaten so far"
 <br>
@@ -459,6 +459,7 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 > - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
 
 
+--- bg:#404040
 
 ## Improvements
 
