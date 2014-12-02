@@ -35,13 +35,33 @@ em {
 --- .class #id bg:#404040
 
 <br><br><br><br><br><br>
-<center> <font color="white" size=30> Ecology is <font color=#FF6161> ripe </font> with models </font> </center>
+<center> <font color="white" size=30> Ecology is ripe with <font color=#FF6161 size = 45> models </font> </font> </center>
 
 --- bg:#404040
+
+> From the simple...
+<br>
+> $$ \frac{dN}{dt} = (rN) $$
+> $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
+<br>
+> To the slightly more complicated
+> $$ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) $$
+
+--- bg:#404040
+
+> To the even more complicated
+
+$$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
+ 
+<br>
+
+$$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ $$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
+
 
 ![](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/ecology_models_1)
 <br>
 ![](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/ecology_models_2)
+
 
 --- .class #id bg:#404040
 
