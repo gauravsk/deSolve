@@ -132,7 +132,8 @@ em {
 
 <p>\[ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) \]
 <br> 
-\[ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = \] \[ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] \]
+\[ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = \] 
+\[ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] \]
 <br>
 \[ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  \] </p>
 
@@ -146,7 +147,7 @@ em {
   </hgroup>
   <article data-timings="">
     <ul class = "build incremental">
-<li>Differential equations are used when the <font color = #FF6161 size = 32> rate of change of a quantity depends on the quantity itself </font>
+<li>Differential equations are used when the <font color = #FF6161 size = 20> rate of change of a quantity depends on the quantity itself </font>
 <br></li>
 <li>E.g &quot;How fast you eat is a function of how much food you have eaten so far&quot;
 <br></li>
@@ -168,10 +169,10 @@ em {
 
 <slide class="" id="slide-8" style="background:#404040;">
   <article data-timings="">
-    <p><br><br><br><br><br><br>
+    <p><br><br><br><br>
 <center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
 <br><br>
-<font size = 25> The system we are explaining is inherently <font color = #FF6161> dynamic </font>; our illustrations are inherently static </font>
+<font color="white" size=25> The system we are explaining is inherently <font color=#FF6161>dynamic</font>; our illustrations are inherently static </font>
 </center></p>
 
   </article>
@@ -191,9 +192,9 @@ em {
   <article data-timings="">
     <ul class = "build incremental">
 <li>Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.</li>
-<li><p>There is a limited supply of coffee in the department, for which the two groups compete. </p></li>
-<li><p><img src="images/competition.svg" alt="labs competing for coffee">
-<br></p></li>
+<li>There is a limited supply of coffee in the department, for which the two groups compete. </li>
+<li><img src="images/competition.svg" alt="labs competing for coffee">
+<br></li>
 </ul>
 
   </article>
@@ -207,7 +208,6 @@ em {
 
 <ul class = "build incremental">
 <li>Grad students&#39; coffee consumption is decreased by others in the same group (<strong><em>intraspecific</em></strong> competition) and grad students in other groups (<strong><em>interspecific</em></strong> competition)</li>
-<li>\(\alpha\) = estimate of interspecific competition</li>
 </ul>
 
   </article>
@@ -227,7 +227,7 @@ em {
 <li>\[ \frac{dN_{1}}{dt} = (rN)\left(1-\frac{N_{1} + \alpha_{2,1}*N_{2}}{K_{1}}\right) \]</li>
 <li>\[ \frac{dN_{2}}{dt} = (rN)\left(1-\frac{N_{2} + \alpha_{1,2}*N_{1}}{K_{2}}\right) \]
 <align = "center"></li>
-<li>This is a pair of <font size= 30 color = #FF6161> <strong><em>Ordinary Differential Equations</em></strong> (ODEs) </font> 
+<li>This is a pair of <font size= 28 color = #FF6161> <strong><em>Ordinary Differential Equations</em></strong> (ODEs) </font> 
 </align></li>
 </ul>
 
@@ -408,11 +408,12 @@ str(lvout)
 ##  $ P   : num  132 68 51 44 40 37 35 33 32 32 ...
 </code></pre>
 
-<p><br>
-<center></p>
+<p><br></p>
+
+<p><center></p>
 
 <ul class = "build incremental">
-<li><font color = #FF6161 size="65"> It works! </font>
+<li><font color = #FF6161 size="28"> It works! </font>
 </center></li>
 </ul>
 
@@ -446,16 +447,15 @@ plot(1,type=&quot;n&quot;,xlim=c(0,max(params[&quot;K1&quot;],params[&quot;K2&qu
       ylim=c(0,max(params[&quot;K2&quot;]  ,params[&quot;K1&quot;]/params[&quot;a&quot;])+20),
       xlab  =&quot;Species 1&quot;,ylab=&quot;Species 2&quot;,main=&quot;ZNGIs for Sp.1 and Sp.2&quot;,
       xaxs=&quot;i&quot;,yaxs=&quot;i&quot;,cex.axis=1.5,cex.lab=1.5)
-lines(x = c(params[&quot;K1&quot;],0),y = c(0,params[&quot;K1&quot;]/params[&quot;a&quot;]),lwd=2,col=&quot;blue&quot;)
-lines(x = c(params[&quot;K2&quot;]/params[&quot;b&quot;], 0) ,y = c(0,params[&quot;K2&quot;]),lwd=2,col=&quot;red&quot;)
-points (x = p[1] , y = p[2] , cex = 2 , pch = 20)
 
-# add legend
-# legend(x=&quot;topright&quot;,lty=c(1,2),legend=c(&quot;Species 1&quot;,&quot;Species 2&quot;),bty=&quot;n&quot;)
+lines  (x = c(params[&quot;K1&quot;],0),y = c(0,params[&quot;K1&quot;]/params[&quot;a&quot;]),lwd=2,col=&quot;blue&quot;)
+lines  (x = c(params[&quot;K2&quot;]/params[&quot;b&quot;], 0) ,y = c(0,params[&quot;K2&quot;]),lwd=2,col=&quot;red&quot;)
+points (x = p[1] , y = p[2] , cex = 2 , pch = 20)
 
 
 # Plot out the results of the ODE. 
 # Panel C: Sp. 1 vs Sp. 2
+
 plot(lvout$P~lvout$N,type=&quot;o&quot;,col=&quot;blue&quot;,xlim=c(0,max(lvout$N)+20),
      ylim=c(0,max(lvout$P)+20), main = &quot;Species 1 vs Species 2&quot;,xlab=&quot;Species 1&quot;, 
      ylab=&quot;Species 2&quot;,cex.axis=1.5,cex.lab=1.5)
@@ -646,9 +646,16 @@ legend(x=&quot;topright&quot;,col=c(&quot;black&quot;,&quot;red&quot;),lty=1,leg
 <li>\[ \hat{N_{1}} = K + \alpha * N_{2} \]</li>
 </ul>
 
-<h2>Improvements</h2>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<pre><code class="r">#########################################
+<slide class="" id="slide-32" style="background:#404040;">
+  <hgroup>
+    <h2>Improvements</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">#########################################
 # Attempting to run only to stead state #
 #########################################
 
@@ -856,6 +863,12 @@ steady.lvout=floor(lvout)
       <a href="#" target="_self" rel='tooltip' 
         data-slide=31 title='Improvements'>
          31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Improvements'>
+         32
       </a>
     </li>
   </ul>

@@ -70,7 +70,8 @@ em {
 
 $$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
 <br> 
-$$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ $$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
+$$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ 
+$$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
 <br>
 $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$ 
 
@@ -79,7 +80,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 ## Refresher on Differential Equations
 
-> - Differential equations are used when the <font color = #FF6161 size = 32> rate of change of a quantity depends on the quantity itself </font>
+> - Differential equations are used when the <font color = #FF6161 size = 20> rate of change of a quantity depends on the quantity itself </font>
 <br>
 > - E.g "How fast you eat is a function of how much food you have eaten so far"
 <br>
@@ -92,10 +93,10 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 --- bg:#404040
 
-<br><br><br><br><br><br>
+<br><br><br><br>
 <center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
 <br><br>
-<font size = 25> The system we are explaining is inherently <font color = #FF6161> dynamic </font>; our illustrations are inherently static </font>
+<font color="white" size=25> The system we are explaining is inherently <font color=#FF6161>dynamic</font>; our illustrations are inherently static </font>
 </center>
 
 
@@ -108,7 +109,6 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 > - Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.
 > - There is a limited supply of coffee in the department, for which the two groups compete. 
-
 > - ![labs competing for coffee](images/competition.svg)
 <br>
 
@@ -118,7 +118,6 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 <br>
 
 > - Grad students' coffee consumption is decreased by others in the same group (***intraspecific*** competition) and grad students in other groups (***interspecific*** competition)
-> - $\alpha$ = estimate of interspecific competition
 
 --- .class #id bg:#404040
 ## Lotka-Volterra competition equations models this system.
@@ -130,7 +129,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 > - $$ \frac{dN_{1}}{dt} = (rN)\left(1-\frac{N_{1} + \alpha_{2,1}*N_{2}}{K_{1}}\right) $$
 > - $$ \frac{dN_{2}}{dt} = (rN)\left(1-\frac{N_{2} + \alpha_{1,2}*N_{1}}{K_{2}}\right) $$
 <align = "center">
-> - This is a pair of <font size= 30 color = #FF6161> ***Ordinary Differential Equations*** (ODEs) </font> 
+> - This is a pair of <font size= 28 color = #FF6161> ***Ordinary Differential Equations*** (ODEs) </font> 
 </align>
 
 --- .class #id bg:#404040
@@ -274,8 +273,9 @@ str(lvout)
 ##  $ P   : num  132 68 51 44 40 37 35 33 32 32 ...
 ```
 <br>
+
 <center>
-> - <font color = #FF6161 size="65"> It works! </font>
+> - <font color = #FF6161 size="28"> It works! </font>
 </center>
 
 --- bg:#404040
@@ -305,16 +305,15 @@ plot(1,type="n",xlim=c(0,max(params["K1"],params["K2"]/params["b"])+20),
       ylim=c(0,max(params["K2"]  ,params["K1"]/params["a"])+20),
       xlab  ="Species 1",ylab="Species 2",main="ZNGIs for Sp.1 and Sp.2",
       xaxs="i",yaxs="i",cex.axis=1.5,cex.lab=1.5)
-lines(x = c(params["K1"],0),y = c(0,params["K1"]/params["a"]),lwd=2,col="blue")
-lines(x = c(params["K2"]/params["b"], 0) ,y = c(0,params["K2"]),lwd=2,col="red")
-points (x = p[1] , y = p[2] , cex = 2 , pch = 20)
 
-# add legend
-# legend(x="topright",lty=c(1,2),legend=c("Species 1","Species 2"),bty="n")
+lines  (x = c(params["K1"],0),y = c(0,params["K1"]/params["a"]),lwd=2,col="blue")
+lines  (x = c(params["K2"]/params["b"], 0) ,y = c(0,params["K2"]),lwd=2,col="red")
+points (x = p[1] , y = p[2] , cex = 2 , pch = 20)
 
 
 # Plot out the results of the ODE. 
 # Panel C: Sp. 1 vs Sp. 2
+
 plot(lvout$P~lvout$N,type="o",col="blue",xlim=c(0,max(lvout$N)+20),
      ylim=c(0,max(lvout$P)+20), main = "Species 1 vs Species 2",xlab="Species 1", 
      ylab="Species 2",cex.axis=1.5,cex.lab=1.5)
@@ -462,6 +461,7 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 > - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
 
 
+--- bg:#404040
 
 ## Improvements
 

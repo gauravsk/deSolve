@@ -70,7 +70,8 @@ em {
 
 $$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
 <br> 
-$$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ $$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
+$$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ 
+$$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
 <br>
 $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$ 
 
@@ -95,7 +96,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 <br><br><br><br>
 <center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
 <br><br>
-<font color = "white" size = 25> The system we are explaining is inherently <font color = #FF6161> dynamic </font>; our illustrations are inherently static </font>
+<font color="white" size=25> The system we are explaining is inherently <font color=#FF6161>dynamic</font>; our illustrations are inherently static </font>
 </center>
 
 
@@ -108,8 +109,12 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 > - Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.
 > - There is a limited supply of coffee in the department, for which the two groups compete. 
+<br> 
+
+<center>
 > - ![labs competing for coffee](images/competition.svg)
-<br>
+
+<\center>
 
 --- .class #id bg:#404040
 
