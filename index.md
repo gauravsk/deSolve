@@ -1,8 +1,8 @@
 ---
 title       : Differential Equations in R
 subtitle    : An introduction with Lotka-Volterra competition models
-author      : Marcel Vaz & Gaurav Kandlikar
-job         : Kraft Lab
+author      : Gaurav Kandlikar & Marcel Vaz
+job         : Kraft Lab, University of Maryland
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -35,29 +35,38 @@ em {
 --- .class #id bg:#404040
 
 <br><br><br><br><br><br>
-<center> <font color="white" size=30> Ecology is ripe with <font color=#FF6161 size = 45> models </font> </font> </center>
+<center> <font color="white" size=30> Ecology is rife with <font color=#FF6161 size = 45> models </font> </font> </center>
 
 --- bg:#404040
-
+<font size = 35>
 > From the simple...
+</font>
 <br>
 > $$ \frac{dN}{dt} = (rN) $$
 > $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
 <br>
 
+
 --- bg:#404040
 
+<font size = 35> 
 > From the simple...
+</font>
 <br>
 > $$ \frac{dN}{dt} = (rN) $$
 > $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
 <br>
+
+<font size = 35>
 > To the slightly more complicated
+</font>
 > $$ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) $$
+</font>
 
 --- bg:#404040
-
+<font size = 35>
 > To the even more complicated
+</font>
 
 $$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
 <br> 
@@ -66,11 +75,34 @@ $$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} 
 $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$ 
 
 
+--- bg:#404040
+
+## Refresher on Differential Equations
+
+> - Differential equations are used when the <font color = #FF6161 size = 32> rate of change of a quantity depends on the quantity itself </font>
+<br>
+> - E.g "How fast you eat is a function of how much food you have eaten so far"
+<br>
+> - For an ecological example, "How fast a population grows is a function of how big the population already is"
+
+--- bg:#404040
+
+<br><br><br><br><br><br>
+<center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
+
+--- bg:#404040
+
+<br><br><br><br><br><br>
+<center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
+<br><br>
+<font size = 25> The system we are explaining is inherently <font color = #FF6161> dynamic </font>; our illustrations are inherently static </font>
+</center>
+
 
 --- .class #id bg:#404040
 
 <br><br><br><br><br><br>
-<center> <font color="white" size=30> How can we leverage `R` as a <font color=#FF6161 size=45> pedagogical </font> tool? </font> </center>
+<center> <font color="white" size=30> `R` is a powerful <font color=#FF6161 size=45> pedagogical </font> tool. </font> </center>
 
 --- .class #id bg:#404040
 
@@ -82,14 +114,14 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 --- .class #id bg:#404040
 
-![labs competing for coffee](/images/competition.svg)
+![labs competing for coffee](images/competition.svg)
 <br>
 
 > - Grad students' coffee consumption is decreased by others in the same group (***intraspecific*** competition) and grad students in other groups (***interspecific*** competition)
 > - $\alpha$ = estimate of interspecific competition
 
 --- .class #id bg:#404040
-## Lotka-Volterra equations model these systems.
+## Lotka-Volterra competition equations models this system.
 
 > - Consider a two-species system. 
 > - $N_{1}$ and $N_{2}$ represent population sizes of the two groups
@@ -241,11 +273,10 @@ str(lvout)
 ##  $ N   : num  56 46 45 45 45 45 46 46 46 46 ...
 ##  $ P   : num  132 68 51 44 40 37 35 33 32 32 ...
 ```
-
-<align = "center">
+<br>
+<center>
 > - <font color = #FF6161 size="65"> It works! </font>
-
-</align>
+</center>
 
 --- bg:#404040
 
@@ -306,7 +337,7 @@ points(lvout$P~time,col="red",type="l",lwd=2)
 <center> <font color="white" size=30> Great, but this code is intimidating!</font> </center>
 <br>
 <center>
-![](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/stress.gif)
+![](images/stress.gif)
 </center>
 
 --- bg:#404040
@@ -327,15 +358,6 @@ lvout <- floor(as.data.frame(ode(func=lv_func,y=init,parms=params,times=time)))
 
 plot.all(lvout)
 ```
-
---- bg:#404040
-
-
-```
-## Error: invalid type (closure) for variable 'time'
-```
-
-![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10.png) 
 
 --- bg:#404040
 ##   Other ecological models
@@ -419,7 +441,7 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 
 --- bg:#404040
 
-![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13.png) 
 
 --- bg:#404040
 
@@ -438,6 +460,8 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 > - ODEs have <font color = > steady-states </font>
 <br>
 > - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
+
+
 
 ## Improvements
 

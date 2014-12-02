@@ -4,7 +4,7 @@
   <title>Differential Equations in R</title>
   <meta charset="utf-8">
   <meta name="description" content="Differential Equations in R">
-  <meta name="author" content="Marcel Vaz &amp; Gaurav Kandlikar">
+  <meta name="author" content="Gaurav Kandlikar &amp; Marcel Vaz">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -34,7 +34,7 @@
   <hgroup class="auto-fadein">
     <h1>Differential Equations in R</h1>
     <h2>An introduction with Lotka-Volterra competition models</h2>
-    <p>Marcel Vaz &amp; Gaurav Kandlikar<br/>Kraft Lab</p>
+    <p>Gaurav Kandlikar &amp; Marcel Vaz<br/>Kraft Lab, University of Maryland</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -72,7 +72,7 @@ em {
 <slide class="class" id="id" style="background:#404040;">
   <article data-timings="">
     <p><br><br><br><br><br><br>
-<center> <font color="white" size=30> Ecology is ripe with <font color=#FF6161 size = 45> models </font> </font> </center></p>
+<center> <font color="white" size=30> Ecology is rife with <font color=#FF6161 size = 45> models </font> </font> </center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -80,8 +80,11 @@ em {
 
 <slide class="" id="slide-3" style="background:#404040;">
   <article data-timings="">
-    <blockquote>
+    <p><font size = 35></p>
+
+<blockquote>
 <p>From the simple...
+</font>
 <br>
 \[ \frac{dN}{dt} = (rN) \]
 \[ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} \]
@@ -94,14 +97,24 @@ em {
 
 <slide class="" id="slide-4" style="background:#404040;">
   <article data-timings="">
-    <blockquote>
+    <p><font size = 35> </p>
+
+<blockquote>
 <p>From the simple...
+</font>
 <br>
 \[ \frac{dN}{dt} = (rN) \]
 \[ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} \]
-<br>
-To the slightly more complicated
-\[ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) \]</p>
+<br></p>
+</blockquote>
+
+<p><font size = 35></p>
+
+<blockquote>
+<p>To the slightly more complicated
+</font>
+\[ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) \]
+</font></p>
 </blockquote>
 
   </article>
@@ -110,8 +123,11 @@ To the slightly more complicated
 
 <slide class="" id="slide-5" style="background:#404040;">
   <article data-timings="">
-    <blockquote>
-<p>To the even more complicated</p>
+    <p><font size = 35></p>
+
+<blockquote>
+<p>To the even more complicated
+</font></p>
 </blockquote>
 
 <p>\[ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) \]
@@ -124,10 +140,48 @@ To the slightly more complicated
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-6" style="background:#404040;">
+  <hgroup>
+    <h2>Refresher on Differential Equations</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Differential equations are used when the <font color = #FF6161 size = 32> rate of change of a quantity depends on the quantity itself </font>
+<br></li>
+<li>E.g &quot;How fast you eat is a function of how much food you have eaten so far&quot;
+<br></li>
+<li>For an ecological example, &quot;How fast a population grows is a function of how big the population already is&quot;</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:#404040;">
+  <article data-timings="">
+    <p><br><br><br><br><br><br>
+<center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:#404040;">
+  <article data-timings="">
+    <p><br><br><br><br><br><br>
+<center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
+<br><br>
+<font size = 25> The system we are explaining is inherently <font color = #FF6161> dynamic </font>; our illustrations are inherently static </font>
+</center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
 <slide class="class" id="id" style="background:#404040;">
   <article data-timings="">
     <p><br><br><br><br><br><br>
-<center> <font color="white" size=30> How can we leverage <code>R</code> as a <font color=#FF6161 size=45> pedagogical </font> tool? </font> </center></p>
+<center> <font color="white" size=30> <code>R</code> is a powerful <font color=#FF6161 size=45> pedagogical </font> tool. </font> </center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -148,7 +202,7 @@ To the slightly more complicated
 
 <slide class="class" id="id" style="background:#404040;">
   <article data-timings="">
-    <p><img src="/images/competition.svg" alt="labs competing for coffee">
+    <p><img src="images/competition.svg" alt="labs competing for coffee">
 <br></p>
 
 <ul class = "build incremental">
@@ -162,7 +216,7 @@ To the slightly more complicated
 
 <slide class="class" id="id" style="background:#404040;">
   <hgroup>
-    <h2>Lotka-Volterra equations model these systems.</h2>
+    <h2>Lotka-Volterra competition equations models this system.</h2>
   </hgroup>
   <article data-timings="">
     <ul class = "build incremental">
@@ -212,7 +266,7 @@ To the slightly more complicated
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:#404040;">
+<slide class="" id="slide-15" style="background:#404040;">
   <hgroup>
     <h2>Introducing <code>deSolve</code></h2>
   </hgroup>
@@ -240,7 +294,7 @@ ls(&quot;package:deSolve&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:#404040;">
+<slide class="" id="slide-16" style="background:#404040;">
   <hgroup>
     <h2>Introducing the function <code>ode</code></h2>
   </hgroup>
@@ -258,7 +312,7 @@ ls(&quot;package:deSolve&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-14" style="background:#404040;">
+<slide class="" id="slide-17" style="background:#404040;">
   <hgroup>
     <h2>How to use <code>ode</code></h2>
   </hgroup>
@@ -283,7 +337,7 @@ ls(&quot;package:deSolve&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:#404040;">
+<slide class="" id="slide-18" style="background:#404040;">
   <hgroup>
     <h2>Setting up the user-defined <code>func</code></h2>
   </hgroup>
@@ -317,7 +371,7 @@ lv &lt;- function (time , init , params) {
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:#404040;">
+<slide class="" id="slide-19" style="background:#404040;">
   <hgroup>
     <h2>Testing <code>lv</code></h2>
   </hgroup>
@@ -343,7 +397,7 @@ str(lvout)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:#404040;">
+<slide class="" id="slide-20" style="background:#404040;">
   <hgroup>
     <h2>Testing <code>lv</code></h2>
   </hgroup>
@@ -354,19 +408,19 @@ str(lvout)
 ##  $ P   : num  132 68 51 44 40 37 35 33 32 32 ...
 </code></pre>
 
-<p><align = "center"></p>
+<p><br>
+<center></p>
 
 <ul class = "build incremental">
-<li><font color = #FF6161 size="65"> It works! </font></li>
+<li><font color = #FF6161 size="65"> It works! </font>
+</center></li>
 </ul>
-
-<p></align></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:#404040;">
+<slide class="" id="slide-21" style="background:#404040;">
   <hgroup>
     <h2>Fun with graphs</h2>
   </hgroup>
@@ -416,7 +470,7 @@ points(lvout$P~time,col=&quot;red&quot;,type=&quot;l&quot;,lwd=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:#404040;">
+<slide class="" id="slide-22" style="background:#404040;">
   <hgroup>
     <h2>Fun with graphs</h2>
   </hgroup>
@@ -427,20 +481,20 @@ points(lvout$P~time,col=&quot;red&quot;,type=&quot;l&quot;,lwd=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:#404040;">
+<slide class="" id="slide-23" style="background:#404040;">
   <article data-timings="">
     <p><br><br><br><br>
 <center> <font color="white" size=30> Great, but this code is intimidating!</font> </center>
 <br>
 <center>
-<img src="/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/stress.gif" alt="">
+<img src="images/stress.gif" alt="">
 </center></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:#404040;">
+<slide class="" id="slide-24" style="background:#404040;">
   <hgroup>
     <h2>Simplifying the process: source the code</h2>
   </hgroup>
@@ -462,18 +516,7 @@ plot.all(lvout)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:#404040;">
-  <article data-timings="">
-    <pre><code>## Error: invalid type (closure) for variable &#39;time&#39;
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-10.png" alt="plot of chunk unnamed-chunk-10"> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-23" style="background:#404040;">
+<slide class="" id="slide-25" style="background:#404040;">
   <hgroup>
     <h2>Other ecological models</h2>
   </hgroup>
@@ -489,7 +532,7 @@ plot.all(lvout)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:#404040;">
+<slide class="" id="slide-26" style="background:#404040;">
   <hgroup>
     <h2>Implementing the L-V predator-prey models</h2>
   </hgroup>
@@ -523,7 +566,7 @@ plot.all(lvout)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:#404040;">
+<slide class="" id="slide-27" style="background:#404040;">
   <article data-timings="">
     <pre><code class="r"># Set ODE parameters
 # These parameters give really whacky results, should try to find better parameters for demonstration!
@@ -548,7 +591,7 @@ str (lvppout)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:#404040;">
+<slide class="" id="slide-28" style="background:#404040;">
   <article data-timings="">
     <pre><code class="r">par(mfrow=c(1,2),bg=&quot;white&quot;)
 # Plot P vs N; draw in the starting N and P parameters, draw in the ZNGIs
@@ -567,15 +610,15 @@ legend(x=&quot;topright&quot;,col=c(&quot;black&quot;,&quot;red&quot;),lty=1,leg
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:#404040;">
+<slide class="" id="slide-29" style="background:#404040;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-14.png" alt="plot of chunk unnamed-chunk-14"> </p>
+    <p><img src="assets/fig/unnamed-chunk-13.png" alt="plot of chunk unnamed-chunk-13"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:#404040;">
+<slide class="" id="slide-30" style="background:#404040;">
   <hgroup>
     <h2>General approach to solving ODEs</h2>
   </hgroup>
@@ -590,7 +633,7 @@ legend(x=&quot;topright&quot;,col=c(&quot;black&quot;,&quot;red&quot;),lty=1,leg
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:#404040;">
+<slide class="" id="slide-31" style="background:#404040;">
   <hgroup>
     <h2>Improvements</h2>
   </hgroup>
@@ -661,7 +704,7 @@ steady.lvout=floor(lvout)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title=''>
+        data-slide=6 title='Refresher on Differential Equations'>
          6
       </a>
     </li>
@@ -679,109 +722,109 @@ steady.lvout=floor(lvout)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Lotka-Volterra equations model these systems.'>
+        data-slide=9 title=''>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='ODEs track the <font color = #FF6161> change </font> in variables of interest'>
+        data-slide=10 title=''>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Dynamic models require dynamic solutions'>
+        data-slide=11 title=''>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Introducing <code>deSolve</code>'>
+        data-slide=12 title='Lotka-Volterra competition equations models this system.'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Introducing the function <code>ode</code>'>
+        data-slide=13 title='ODEs track the <font color = #FF6161> change </font> in variables of interest'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='How to use <code>ode</code>'>
+        data-slide=14 title='Dynamic models require dynamic solutions'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Setting up the user-defined <code>func</code>'>
+        data-slide=15 title='Introducing <code>deSolve</code>'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Testing <code>lv</code>'>
+        data-slide=16 title='Introducing the function <code>ode</code>'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Testing <code>lv</code>'>
+        data-slide=17 title='How to use <code>ode</code>'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Fun with graphs'>
+        data-slide=18 title='Setting up the user-defined <code>func</code>'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Fun with graphs'>
+        data-slide=19 title='Testing <code>lv</code>'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title=''>
+        data-slide=20 title='Testing <code>lv</code>'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Simplifying the process: source the code'>
+        data-slide=21 title='Fun with graphs'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title=''>
+        data-slide=22 title='Fun with graphs'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Other ecological models'>
+        data-slide=23 title=''>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Implementing the L-V predator-prey models'>
+        data-slide=24 title='Simplifying the process: source the code'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title=''>
+        data-slide=25 title='Other ecological models'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title=''>
+        data-slide=26 title='Implementing the L-V predator-prey models'>
          26
       </a>
     </li>
@@ -793,14 +836,26 @@ steady.lvout=floor(lvout)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='General approach to solving ODEs'>
+        data-slide=28 title=''>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Improvements'>
+        data-slide=29 title=''>
          29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='General approach to solving ODEs'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Improvements'>
+         31
       </a>
     </li>
   </ul>
