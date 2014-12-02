@@ -82,7 +82,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 --- .class #id bg:#404040
 
-![labs competing for coffee](/images/competition.svg)
+![labs competing for coffee](images/competition.svg)
 <br>
 
 > - Grad students' coffee consumption is decreased by others in the same group (***intraspecific*** competition) and grad students in other groups (***interspecific*** competition)
@@ -203,11 +203,10 @@ str(lvout)
 ```{r, echo=FALSE}
 str(lvout)
 ```
-
-<align = "center">
+<br>
+<center>
 > - <font color = #FF6161 size="65"> It works! </font>
-
-</align>
+</center>
 
 --- bg:#404040
 
@@ -307,7 +306,7 @@ points(lvout$P~time,col="red",type="l",lwd=2)
 <center> <font color="white" size=30> Great, but this code is intimidating!</font> </center>
 <br>
 <center>
-![](/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/stress.gif)
+![](images/stress.gif)
 </center>
 
 --- bg:#404040
@@ -326,22 +325,6 @@ params <- c(r1 = 1, b = 1.5 , K1 = 50 , r2 = 1, a = .1 , K2 = 100)
 lvout <- floor(as.data.frame(ode(func=lv_func,y=init,parms=params,times=time)))
 
 plot.all(lvout)
-```
-
---- bg:#404040
-
-```{r, echo=FALSE, fig.width=12,fig.height=7}
-source("~/grad/Dropbox/courses/fall2014/entm798v/scripts/R_project/lv_source.R")
-
-
-init<-c(N = 199, P = 200) 
-time  <- seq (0, 100, by=1)
-params <- c(r1 = 1, b = 1.5 , K1 = 50 , r2 = 1, a = .1 , K2 = 100)
-
-# run the ODE 
-lvout <- floor(as.data.frame(ode(func=lv_func,y=init,parms=params,times=time)))
-
-plot.all(lvout,params)
 ```
 
 --- bg:#404040
@@ -449,6 +432,8 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 > - ODEs have <font color = > steady-states </font>
 <br>
 > - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
+
+
 
 ## Improvements
 
