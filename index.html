@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Differential Equations in R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Differential Equations in R">
+  <meta name="author" content="Marcel Vaz &amp; Gaurav Kandlikar">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Differential Equations in R</h1>
+    <h2>An introduction with Lotka-Volterra competition models</h2>
+    <p>Marcel Vaz &amp; Gaurav Kandlikar<br/>Kraft Lab</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <!-- Center image on slide -->
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+<style>
+strong {
+  font-weight: bold;
+}
+</style>
+
+<style>
+em {
+  font-style: italic
+}
+</style>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:#404040;">
+  <article data-timings="">
+    <p><br><br><br><br><br><br>
+<center> <font color="white" size=30> Ecology is <font color=#FF6161> ripe </font> with models </font> </center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:#404040;">
+  <article data-timings="">
+    <p><img src="/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/ecology_models_1" alt="">
+<br>
+<img src="/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/ecology_models_2" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:#404040;">
+  <article data-timings="">
+    <p><br><br><br><br><br><br>
+<center> <font color="white" size=30> How can we leverage <code>R</code> as a <font color=#FF6161 size=45> pedagogical </font> tool? </font> </center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:#404040;">
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.</li>
+<li><p>There is a limited supply of coffee in the department, for which the two groups compete. </p></li>
+<li><p><img src="/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/competition.svg" alt="labs competing for coffee">
+<br></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:#404040;">
+  <article data-timings="">
+    <p><img src="/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/competition.svg" alt="labs competing for coffee">
+<br></p>
+
+<ul class = "build incremental">
+<li>Grad students&#39; coffee consumption is decreased by others in the same group (<strong><em>intraspecific</em></strong> competition) and grad students in other groups (<strong><em>interspecific</em></strong> competition)</li>
+<li>\(\alpha\) = estimate of interspecific competition</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:#404040;">
+  <hgroup>
+    <h2>Lotka-Volterra equations model these systems.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Consider a two-species system. </li>
+<li>\(N_{1}\) and \(N_{2}\) represent population sizes of the two groups</li>
+<li>L-V competition equations allow us to project changes in \(N\) over time
+<br></li>
+<li>\[ \frac{dN_{1}}{dt} = (rN)\left(1-\frac{N_{1} + \alpha_{2,1}*N_{2}}{K_{1}}\right) \]</li>
+<li>\[ \frac{dN_{2}}{dt} = (rN)\left(1-\frac{N_{2} + \alpha_{1,2}*N_{1}}{K_{2}}\right) \]
+<align = "center"></li>
+<li>This is a pair of <font size= 30 color = #FF6161> <strong><em>Ordinary Differential Equations</em></strong> (ODEs) </font> 
+</align></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:#404040;">
+  <hgroup>
+    <h2>Dynamic models require dynamic solutions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li><p>\[ \frac{dN_{1}}{dt} = (rN)\left(1-\frac{N_{1} + \alpha_{2,1}*N_{2}}{K_{1}}\right) \]</p></li>
+<li><p>The equilibrium value of \(N_{1}\) is a function of \(\alpha\) and \(N_{2}\):</p></li>
+<li><p>\[ \hat{N_{1}} = K + \alpha * N_{2} \]</p></li>
+<li><p>Base <code>R</code> lacks an ODE solver, but <code>deSolve</code> comes to the rescue.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:#404040;">
+  <hgroup>
+    <h2>Introducing <code>deSolve</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># install.packages(&quot;deSolve&quot;)
+require(&quot;deSolve&quot;)
+ls(&quot;package:deSolve&quot;)
+</code></pre>
+
+<pre><code>##  [1] &quot;aquaphy&quot;             &quot;ccl4data&quot;            &quot;ccl4model&quot;          
+##  [4] &quot;cleanEventTimes&quot;     &quot;daspk&quot;               &quot;dede&quot;               
+##  [7] &quot;diagnostics&quot;         &quot;diagnostics.default&quot; &quot;diagnostics.deSolve&quot;
+## [10] &quot;DLLfunc&quot;             &quot;DLLres&quot;              &quot;euler&quot;              
+## [13] &quot;euler.1D&quot;            &quot;lagderiv&quot;            &quot;lagvalue&quot;           
+## [16] &quot;lsoda&quot;               &quot;lsodar&quot;              &quot;lsode&quot;              
+## [19] &quot;lsodes&quot;              &quot;matplot.1D&quot;          &quot;nearestEvent&quot;       
+## [22] &quot;ode&quot;                 &quot;ode.1D&quot;              &quot;ode.2D&quot;             
+## [25] &quot;ode.3D&quot;              &quot;ode.band&quot;            &quot;plot.1D&quot;            
+## [28] &quot;radau&quot;               &quot;rk&quot;                  &quot;rk4&quot;                
+## [31] &quot;rkMethod&quot;            &quot;SCOC&quot;                &quot;timestep&quot;           
+## [34] &quot;vode&quot;                &quot;zvode&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:#404040;">
+  <hgroup>
+    <h2>Introducing the function <code>ode</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">str(ode)
+</code></pre>
+
+<pre><code>## function (y, times, func, parms, method = c(&quot;lsoda&quot;, &quot;lsode&quot;, &quot;lsodes&quot;, 
+##     &quot;lsodar&quot;, &quot;vode&quot;, &quot;daspk&quot;, &quot;euler&quot;, &quot;rk4&quot;, &quot;ode23&quot;, &quot;ode45&quot;, &quot;radau&quot;, 
+##     &quot;bdf&quot;, &quot;bdf_d&quot;, &quot;adams&quot;, &quot;impAdams&quot;, &quot;impAdams_d&quot;, &quot;iteration&quot;), 
+##     ...)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:#404040;">
+  <hgroup>
+    <h2>How to use <code>ode</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">str(ode)
+</code></pre>
+
+<pre><code>## function (y, times, func, parms, method = c(&quot;lsoda&quot;, &quot;lsode&quot;, &quot;lsodes&quot;, 
+##     &quot;lsodar&quot;, &quot;vode&quot;, &quot;daspk&quot;, &quot;euler&quot;, &quot;rk4&quot;, &quot;ode23&quot;, &quot;ode45&quot;, &quot;radau&quot;, 
+##     &quot;bdf&quot;, &quot;bdf_d&quot;, &quot;adams&quot;, &quot;impAdams&quot;, &quot;impAdams_d&quot;, &quot;iteration&quot;), 
+##     ...)
+</code></pre>
+
+<ul class = "build incremental">
+<li><code>y</code> = initial values of the system (here, \(N_{1}\) and \(N_{2}\))<br></li>
+<li><code>times</code> = length of time steps we want to project<br></li>
+<li><code>func</code> = a user-defined function to solve (here, the L-V equations!)<br></li>
+<li><code>parms</code> = the parameters to be used in <code>func</code> (here, \(\alpha\), \(K_{1}\), etc.)<br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:#404040;">
+  <hgroup>
+    <h2>Setting up the user-defined <code>func</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># Define the function lv
+lv &lt;- function (time , init , params) {
+
+  # set everything up as a list to be accessed throughout the function
+  with (as.list(c(time , init , params)), {
+
+    # description of parameters to be included in params:
+    # r1 = growth rate of Sp. 1; r2 = growth rate of Sp. 2
+    # N = population size of Sp. 1; P = Population Size Sp. 2
+    # a = competitive impact of Sp. 2 on Sp. 1; b = competitive impact of Sp 1 on Sp 2
+    # K1 and K2 = carrying capacities of Sp. 1 and Sp. 2, respectively
+
+    # Define the pair of ODEs:
+
+    # Growth of species 1 is a function of species 2
+    N1 &lt;- ( r1 * N * (1 - (N+a*P) / K1) )
+    # Growth of species 2 is a function of species 1
+    N2 &lt;- ( r2 * P * (1 - (P+b*N) / K2) )
+
+    # Return a list of the current population size of Sp.1  and Sp. 2
+    return (list (c (N1 , N2)))
+  })
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:#404040;">
+  <hgroup>
+    <h2>Testing <code>lv</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Provide a set of starting parameters:</p>
+
+<pre><code class="r"># randomly select values for starting N1 and N2
+p &lt;- runif(n = 2, min = 50, max = 150)
+init&lt;-c(N = floor(p[1]), P = floor (p[2])) 
+
+# run the ODE for 100 time steps
+time  &lt;- seq (0, 100, by=1)
+# define species growth rates, carrying capacities and interspecific competition parameters
+params &lt;- c(r1 = 1, b = 1.5 , K1 = 50 , r2 = 1, a = .1 , K2 = 100)
+
+# run the ODE 
+lvout &lt;- floor(as.data.frame(ode(func=lv,y=init,parms=params,times=time)))
+
+str(lvout)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:#404040;">
+  <hgroup>
+    <h2>Testing <code>lv</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## &#39;data.frame&#39;:    101 obs. of  3 variables:
+##  $ time: num  0 1 2 3 4 5 6 7 8 9 ...
+##  $ N   : num  56 46 45 45 45 45 46 46 46 46 ...
+##  $ P   : num  132 68 51 44 40 37 35 33 32 32 ...
+</code></pre>
+
+<p><align = "center"></p>
+
+<ul class = "build incremental">
+<li><font color = #FF6161 size="65"> It works! </font></li>
+</ul>
+
+<p></align></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:#404040;">
+  <hgroup>
+    <h2>Fun with graphs</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">par(mfrow=c(2,2),bg=&quot;white&quot;)
+
+# Plot equation and parameters
+
+# Panel A: current parameter values
+plot(1:10,type=&quot;n&quot;,xlab=&quot;&quot;,ylab=&quot;&quot;,xaxt=&quot;n&quot;,yaxt=&quot;n&quot;,bty=&quot;n&quot;)
+text(5,9,expression(frac(dN[1],dt) == r[1]*N[1]*bgroup(&quot;(&quot;,1-frac(N[1]+alpha*N[2],K[1]),&quot;)&quot;)),cex=1.5)
+text(3,5.7,bquote(N[1] == .(floor(p[1]))),cex=1.5)
+text(7,5.7,bquote(N[2] == .(floor(p[2]))),cex=1.5)
+text(3,4.2,bquote(r[1] == .(params[&quot;r1&quot;])),cex=1.5)
+text(7,4.2,bquote(r[2] == .(params[&quot;r2&quot;])),cex=1.5)
+text(3,2.7,bquote(alpha == .(params[&quot;a&quot;])),cex=1.5)
+text(7,2.7,bquote(beta == .(params[&quot;b&quot;])),cex=1.5)
+text(3,1.2,bquote(K[1] == .(params[&quot;K1&quot;])),cex=1.5)
+text(7,1.2,bquote(K[2] == .(params[&quot;K2&quot;])),cex=1.5)
+
+# Panel B: Zero Net Growth Isoclines based on parameters above.
+plot(1,type=&quot;n&quot;,xlim=c(0,max(params[&quot;K1&quot;],params[&quot;K2&quot;]/params[&quot;b&quot;])+20),
+      ylim=c(0,max(params[&quot;K2&quot;]  ,params[&quot;K1&quot;]/params[&quot;a&quot;])+20),
+      xlab  =&quot;Species 1&quot;,ylab=&quot;Species 2&quot;,main=&quot;ZNGIs for Sp.1 and Sp.2&quot;,
+      xaxs=&quot;i&quot;,yaxs=&quot;i&quot;,cex.axis=1.5,cex.lab=1.5)
+lines(x = c(params[&quot;K1&quot;],0),y = c(0,params[&quot;K1&quot;]/params[&quot;a&quot;]),lwd=2,col=&quot;blue&quot;)
+lines(x = c(params[&quot;K2&quot;]/params[&quot;b&quot;], 0) ,y = c(0,params[&quot;K2&quot;]),lwd=2,col=&quot;red&quot;)
+points (x = p[1] , y = p[2] , cex = 2 , pch = 20)
+
+# add legend
+# legend(x=&quot;topright&quot;,lty=c(1,2),legend=c(&quot;Species 1&quot;,&quot;Species 2&quot;),bty=&quot;n&quot;)
+
+
+# Plot out the results of the ODE. 
+# Panel C: Sp. 1 vs Sp. 2
+plot(lvout$P~lvout$N,type=&quot;o&quot;,col=&quot;blue&quot;,xlim=c(0,max(lvout$N)+20),
+     ylim=c(0,max(lvout$P)+20), main = &quot;Species 1 vs Species 2&quot;,xlab=&quot;Species 1&quot;, 
+     ylab=&quot;Species 2&quot;,cex.axis=1.5,cex.lab=1.5)
+
+# Panel D: N1 and N2 vs Time
+plot(lvout$N~time,ylim=c(0,max(lvout$N)+20),ylab=&quot;Population size&quot;,type=&quot;l&quot;,lwd=2,col=&quot;blue&quot;,cex.axis=1.5,cex.lab=1.5,main=&quot;Population size vs time&quot;)
+points(lvout$P~time,col=&quot;red&quot;,type=&quot;l&quot;,lwd=2)
+# legend (x =,col=c(&quot;blue&quot;,&quot;red&quot;),lty=c(1,1),legend=c(&quot;Sp. 1&quot;, &quot;Sp. 2&quot;),bty=&quot;n&quot;,ncol=2)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:#404040;">
+  <hgroup>
+    <h2>Fun with graphs</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-8.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:#404040;">
+  <article data-timings="">
+    <p><br><br><br><br>
+<center> <font color="white" size=30> Great, but this code is intimidating!</font> </center>
+<br>
+<center>
+<img src="/home/gsk/grad/Dropbox/courses/fall2014/entm798v/scripts/present/images/stress.gif" alt="">
+</center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:#404040;">
+  <hgroup>
+    <h2>Simplifying the process: source the code</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">source(&quot;~/grad/Dropbox/courses/fall2014/entm798v/scripts/R_project/lv_source.R&quot;)
+
+p &lt;- runif(n = 2, min = 50, max = 150)
+init&lt;-c(N = floor(p[1]), P = floor (p[2])) 
+time  &lt;- seq (0, 100, by=1)
+params &lt;- c(r1 = 1, b = 1.5 , K1 = 50 , r2 = 1, a = .1 , K2 = 100)
+
+# run the ODE 
+lvout &lt;- floor(as.data.frame(ode(func=lv_func,y=init,parms=params,times=time)))
+
+plot.all(lvout)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:#404040;">
+  <article data-timings="">
+    <pre><code>## Error: invalid type (closure) for variable &#39;time&#39;
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-10.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title=''>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title=''>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title=''>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title=''>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title=''>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title=''>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Lotka-Volterra equations model these systems.'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Dynamic models require dynamic solutions'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Introducing <code>deSolve</code>'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Introducing the function <code>ode</code>'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='How to use <code>ode</code>'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Setting up the user-defined <code>func</code>'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Testing <code>lv</code>'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Testing <code>lv</code>'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Fun with graphs'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Fun with graphs'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title=''>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Simplifying the process: source the code'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title=''>
+         19
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
