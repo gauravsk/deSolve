@@ -51,7 +51,7 @@ em {
 <br>
 > $$ \frac{dN}{dt} = (rN) $$
 > $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
-<br
+<br>
 > To the slightly more complicated
 > $$ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) $$
 
@@ -60,10 +60,11 @@ em {
 > To the even more complicated
 
 $$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
- 
-<br>
-
+<br> 
 $$ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = $$ $$ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] $$
+<br>
+$$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$ 
+
 
 
 --- .class #id bg:#404040
@@ -376,7 +377,6 @@ lvpp <- function(pp.time,pp.init,pp.params,prey_K=FALSE) {
 ```
 
 ---bg:#404040
-## Other ecological models
 
 
 ```r
@@ -402,8 +402,6 @@ str (lvppout)
 
 --- bg:#404040
 
-## Other Ecological Models
-
 
 ```r
 par(mfrow=c(1,2),bg="white")
@@ -421,6 +419,42 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 
 --- bg:#404040
 
-## Other Ecological Models 
-
 ![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14.png) 
+
+--- bg:#404040
+
+## General approach to solving ODEs
+
+> 1. Create a new function to perform the actual calculations at each time step.
+> 2. Define parameters to run with the functions 
+> 3. Run the ODE, save the output to a dataframe
+
+--- bg:#404040
+
+## Improvements
+
+<br>
+
+> - ODEs have <font color = > steady-states </font>
+<br>
+> - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
+
+## Improvements
+
+
+```r
+#########################################
+# Attempting to run only to stead state #
+#########################################
+
+rootfun <- function(Time, State, Pars) {
+  dstate <- unlist(lv(Time, State, Pars))
+  sum(abs(dstate)) - 1e-4
+}
+steady.lvout<-as.data.frame(lsodar(func=lv,,y=init,parms=params,times=time,rootfun=rootfun))
+steady.lvout=floor(lvout)
+
+##########################################
+# End attempt to run only to stead state #
+##########################################
+```

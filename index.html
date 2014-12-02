@@ -99,7 +99,7 @@ em {
 <br>
 \[ \frac{dN}{dt} = (rN) \]
 \[ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} \]
-&lt;br
+<br>
 To the slightly more complicated
 \[ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) \]</p>
 </blockquote>
@@ -114,11 +114,11 @@ To the slightly more complicated
 <p>To the even more complicated</p>
 </blockquote>
 
-<p>\[ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) \]</p>
-
-<p><br></p>
-
-<p>\[ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = \] \[ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] \]</p>
+<p>\[ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) \]
+<br> 
+\[ Pr\{N_{i},N_{j},N_{k}, \ldots , N_{s} | N_{i},N_{j},N_{k}, \ldots , N_{s} \} = \] \[ \sum\limits_{i=1}^s \frac{N_{i}}{J} \left[ mP_{i} + (1-m) \left( \frac{N_{i}-1}{J-1} \right) \right] \]
+<br>
+\[ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  \] </p>
 
   </article>
   <!-- Presenter Notes -->
@@ -524,9 +524,6 @@ plot.all(lvout)
 </slide>
 
 <slide class="" id="slide-25" style="background:#404040;">
-  <hgroup>
-    <h2>Other ecological models</h2>
-  </hgroup>
   <article data-timings="">
     <pre><code class="r"># Set ODE parameters
 # These parameters give really whacky results, should try to find better parameters for demonstration!
@@ -552,9 +549,6 @@ str (lvppout)
 </slide>
 
 <slide class="" id="slide-26" style="background:#404040;">
-  <hgroup>
-    <h2>Other Ecological Models</h2>
-  </hgroup>
   <article data-timings="">
     <pre><code class="r">par(mfrow=c(1,2),bg=&quot;white&quot;)
 # Plot P vs N; draw in the starting N and P parameters, draw in the ZNGIs
@@ -574,11 +568,58 @@ legend(x=&quot;topright&quot;,col=c(&quot;black&quot;,&quot;red&quot;),lty=1,leg
 </slide>
 
 <slide class="" id="slide-27" style="background:#404040;">
-  <hgroup>
-    <h2>Other Ecological Models</h2>
-  </hgroup>
   <article data-timings="">
     <p><img src="assets/fig/unnamed-chunk-14.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:#404040;">
+  <hgroup>
+    <h2>General approach to solving ODEs</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol class = "build incremental">
+<li>Create a new function to perform the actual calculations at each time step.</li>
+<li>Define parameters to run with the functions </li>
+<li>Run the ODE, save the output to a dataframe</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:#404040;">
+  <hgroup>
+    <h2>Improvements</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<ul class = "build incremental">
+<li>ODEs have <font color = > steady-states </font>
+<br></li>
+<li>\[ \hat{N_{1}} = K + \alpha * N_{2} \]</li>
+</ul>
+
+<h2>Improvements</h2>
+
+<pre><code class="r">#########################################
+# Attempting to run only to stead state #
+#########################################
+
+rootfun &lt;- function(Time, State, Pars) {
+  dstate &lt;- unlist(lv(Time, State, Pars))
+  sum(abs(dstate)) - 1e-4
+}
+steady.lvout&lt;-as.data.frame(lsodar(func=lv,,y=init,parms=params,times=time,rootfun=rootfun))
+steady.lvout=floor(lvout)
+
+##########################################
+# End attempt to run only to stead state #
+##########################################
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -734,20 +775,32 @@ legend(x=&quot;topright&quot;,col=c(&quot;black&quot;,&quot;red&quot;),lty=1,leg
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Other ecological models'>
+        data-slide=25 title=''>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Other Ecological Models'>
+        data-slide=26 title=''>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Other Ecological Models'>
+        data-slide=27 title=''>
          27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='General approach to solving ODEs'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Improvements'>
+         29
       </a>
     </li>
   </ul>
