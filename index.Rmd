@@ -38,9 +38,8 @@ em {
 <center> <font color="white" size=30> Ecology is rife with <font color=#FF6161 size = 45> models </font> </font> </center>
 
 --- bg:#404040
-<font size = 35>
-> From the simple...
-</font>
+
+<font size = "35">From the simple...</font>
 <br>
 > $$ \frac{dN}{dt} = (rN) $$
 > $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
@@ -49,24 +48,17 @@ em {
 
 --- bg:#404040
 
-<font size = 35> 
-> From the simple...
-</font>
+<font size = "35">From the simple...</font>
 <br>
 > $$ \frac{dN}{dt} = (rN) $$
 > $$ \frac{dI}{dt} = \frac{\alpha+d+\nu}{\beta} $$
 <br>
 
-<font size = 35>
-> To the slightly more complicated
-</font>
+<font size = "35">To the slightly more complicated</font>
 > $$ \frac{dN_{i}}{dt} = (rN)\left(1-\frac{N_{i} +  \sum\limits_{j=1}^j \alpha_{j,i}*N_{j}}{K_{1}}\right) $$
-</font>
 
 --- bg:#404040
-<font size = 35>
-> To the even more complicated
-</font>
+<font size = "35">To the even more complicated</font>
 
 $$ \lambda_{\bar{i}} (D - x) = (1 - m) \left( \frac{J-N_{i}-X}{J-D} \right) $$
 <br> 
@@ -80,7 +72,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 ## Refresher on Differential Equations
 
-> - Differential equations are used when the <font color = #FF6161 size = 20> rate of change of a quantity depends on the quantity itself </font>
+> - Differential equations are used when the <font color = #FF6161> rate of change of a quantity depends on the quantity itself </font>
 <br>
 > - E.g "How fast you eat is a function of how much food you have eaten so far"
 <br>
@@ -88,43 +80,44 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 --- bg:#404040
 
-<br><br><br><br><br><br>
-<center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
+<br><br><br><br>
+<center> <font color="white" size="30"> Teaching simple models can be a challenging endeavour.</font>
+<br> <br>
+<font color = "white"> We are forced to use static illustrations to convey <font color=#FF6161>dynamic</font> concepts.
+</center> </font>
 
 --- bg:#404040
-
 <br><br><br><br>
-<center> <font color="white" size=40> Teaching simple models can be a challenging endeavour. </font> 
-<br><br>
-<font color="white" size=25> The system we are explaining is inherently <font color=#FF6161>dynamic</font>; our illustrations are inherently static </font>
-</center>
-
+![](images/example_zngis.png)
 
 --- .class #id bg:#404040
 
 <br><br><br><br><br><br>
-<center> <font color="white" size=30> `R` is a powerful <font color=#FF6161 size=45> pedagogical </font> tool. </font> </center>
+<center> <font color="white" size=30> `R` is a powerful pedagogical tool. </font> </center>
+
 
 --- .class #id bg:#404040
+
+## Case-study with Lotka-Volterra competition
 
 > - Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.
 > - There is a limited supply of coffee in the department, for which the two groups compete. 
 <br> 
 
-<center>
 > - ![labs competing for coffee](images/competition.svg)
-
-<\center>
 
 --- .class #id bg:#404040
 
+
 ![labs competing for coffee](images/competition.svg)
+
 <br>
 
 > - Grad students' coffee consumption is decreased by others in the same group (***intraspecific*** competition) and grad students in other groups (***interspecific*** competition)
 
 --- .class #id bg:#404040
-## Lotka-Volterra competition equations models this system.
+
+## Lotka-Volterra competition.
 
 > - Consider a two-species system. 
 > - $N_{1}$ and $N_{2}$ represent population sizes of the two groups
@@ -132,16 +125,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 <br>
 > - $$ \frac{dN_{1}}{dt} = (rN)\left(1-\frac{N_{1} + \alpha_{2,1}*N_{2}}{K_{1}}\right) $$
 > - $$ \frac{dN_{2}}{dt} = (rN)\left(1-\frac{N_{2} + \alpha_{1,2}*N_{1}}{K_{2}}\right) $$
-<align = "center">
-> - This is a pair of <font size= 28 color = #FF6161> ***Ordinary Differential Equations*** (ODEs) </font> 
-</align>
 
---- .class #id bg:#404040
-## ODEs track the <font color = #FF6161> change </font> in variables of interest
-
-$$ \frac{dN}{dt} = (rN)\left(1-\frac{N + \alpha*N_{1}}{K_{2}}\right) $$
-
-> - The rate of change of `N` is a function of the value of `N` at the previous time step (`t-1`) and the system's parameters (e.g. r, $\alpha$)
 
 --- .class #id bg:#404040
 ## Dynamic models require dynamic solutions
@@ -155,7 +139,6 @@ $$ \frac{dN}{dt} = (rN)\left(1-\frac{N + \alpha*N_{1}}{K_{2}}\right) $$
 > - Base `R` lacks an ODE solver, but `deSolve` comes to the rescue.
 
 --- bg:#404040
-
 ## Introducing `deSolve`
 
 ```{r,eval=TRUE}
@@ -239,10 +222,6 @@ str(lvout)
 str(lvout)
 ```
 <br>
-
-<center>
-> - <font color = #FF6161 size="28"> It works! </font>
-</center>
 
 --- bg:#404040
 
@@ -360,7 +339,9 @@ plot.all(lvout)
 ```
 
 --- bg:#404040
-##   Other ecological models
+## Replicating with other ecological models.
+
+> - Lotka-Volterra predator-prey dynamics model a two-species system.
 
 > - $$ \frac{dN}{dT} = rN - aNP $$
 <br>
@@ -401,7 +382,6 @@ lvpp <- function(pp.time,pp.init,pp.params,prey_K=FALSE) {
 
 ```{r}
 # Set ODE parameters
-# These parameters give really whacky results, should try to find better parameters for demonstration!
 pp.time <-seq(0,1000,by=.1)
 pp.params <- c(r=0.1,a=0.005,d=0.01,b=.1,prey_k=500)
 
@@ -485,3 +465,26 @@ steady.lvout=floor(lvout)
 # End attempt to run only to stead state #
 ##########################################
 ```
+
+--- bg:#404040
+## Improvements
+
+> - Animate the graphs to show the growth of the populations
+<br>
+<br>
+> - Animate the graphs to show changes in steady state solution based on starting parameters
+
+--- bg:#404040
+## Improvements
+<br> 
+> - Wrap all of these functions under a Web-app with a nice GUI?!
+
+--- bg:#404040
+## References
+<br>
+
+1. Gotelli, N. A Primer of Ecology. 4th Ed. Sinauer Associates.
+<br>
+2. Karline Soetaert, Thomas Petzoldt, R. Woodrow Setzer (2010). Solving Differential Equations in R: Package deSolve Journal of Statistical Software, 33(9), 1--25. URL http://www.jstatsoft.org/v33/i09/.
+<br>
+3.  Ramnath Vaidyanathan (2012). slidify: Generate reproducible html5 slides from R markdown. R package version 0.4.5.http://ramnathv.github.com/slidify/
