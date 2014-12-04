@@ -81,6 +81,13 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 --- bg:#404040
 
 <br><br><br><br>
+<center> <font color="white" size="30"> "Differential equations as models of population abundance – without a doubt this has been one of the <font color = #FF6161>most dominant ideas for the last 100 years</font>."</font>
+<br><br>
+<font color = "white"> Brian McGill, on [Dynamic Ecology](http://dynamicecology.wordpress.com/2014/12/03/esa100-big-concepts-and-ideas-in-ecology-for-the-last-100-years/)</font> 
+
+--- bg:#404040
+
+<br><br><br><br>
 <center> <font color="white" size="30"> Teaching simple models can be a challenging endeavour.</font>
 <br> <br>
 <font color = "white"> We are forced to use static illustrations to convey <font color=#FF6161>dynamic</font> concepts.
@@ -98,9 +105,9 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 --- .class #id bg:#404040
 
-## Case-study with Lotka-Volterra competition
+## Refresher on Lotka-Volterra competition
 
-> - Consider two groups of grad students: <font color = #FF6161> red </font> and <font color = #FFF390> yellow </font>.
+> - Consider two groups of grad students: <font color = #FF6161> group 1 </font> and <font color = #FFF390> group 2 </font>.
 > - There is a limited supply of coffee in the department, for which the two groups compete. 
 <br> 
 
@@ -117,7 +124,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 --- .class #id bg:#404040
 
-## Lotka-Volterra competition.
+## Refresher on Lotka-Volterra Competition
 
 > - Consider a two-species system. 
 > - $N_{1}$ and $N_{2}$ represent population sizes of the two groups
@@ -128,7 +135,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 
 --- .class #id bg:#404040
-## Dynamic models require dynamic solutions
+## Refresher on Lotka-Volterra Competition
 
 > - $$ \frac{dN_{1}}{dt} = (rN)\left(1-\frac{N_{1} + \alpha_{2,1}*N_{2}}{K_{1}}\right) $$
 
@@ -136,7 +143,7 @@ $$ f_{D,s} = \frac{\rho C_{D,s}A}{m} \vert V_{a}-V_{p} \vert (V_{a} - V_{p})  $$
 
 > - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
 
-> - Base `R` lacks an ODE solver, but `deSolve` comes to the rescue.
+> - Base `R` lacks an ODE solver, but package `deSolve` comes to the rescue.
 
 --- bg:#404040
 ## Introducing `deSolve`
@@ -342,18 +349,17 @@ plot.all(lvout)
 ```
 
 --- bg:#404040
-## Replicating with other ecological models.
+## The beauty of user-defined functions
 
-> - Lotka-Volterra predator-prey dynamics model a two-species system.
+> - Lotka-Volterra predator-prey dynamics model a two-species system:
 
 > - $$ \frac{dN}{dT} = rN - aNP $$
-<br>
 > - $$ \frac{dP}{dT} = baNP - dP $$
 
-> - This is another set of ODEs
+> - Another pair of ODEs, another user-defined function!
 
 --- bg:#404040
-## Implementing the L-V predator-prey models
+## Implementing L-V Predator-Prey systems
 
 
 ```r
@@ -383,11 +389,12 @@ lvpp <- function(pp.time,pp.init,pp.params,prey_K=FALSE) {
 ```
 
 ---bg:#404040
+## Testing the Predator-Prey function
 
 
 ```r
 # Set ODE parameters
-pp.time <-seq(0,1000,by=.1)
+pp.time <-seq(0,3000,by=.1)
 pp.params <- c(r=0.1,a=0.005,d=0.01,b=.1,prey_k=500)
 
 # Set pp.initial population sizes of Prey (N) and Predator (P)
@@ -399,22 +406,23 @@ str (lvppout)
 ```
 
 ```
-## 'data.frame':	10001 obs. of  3 variables:
+## 'data.frame':	30001 obs. of  3 variables:
 ##  $ time: num  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ N   : num  25 25 25 25 25 25 25 25 25 26 ...
 ##  $ P   : num  10 10 10 10 10 10 10 10 10 10 ...
 ```
 
 --- bg:#404040
+## More fun with graphs
 
 
 ```r
 par(mfrow=c(1,2),bg="white")
 # Plot P vs N; draw in the starting N and P parameters, draw in the ZNGIs
-plot(lvppout$P~lvppout$N,ylim=c(0,max(lvppout$P)+20),type="l",xlab="Prey population size",ylab="Predator population size")
-points(x=pp.init["N"],y=pp.init["P"],col="red",pch=19)
-abline(v=pp.params["d"]/(pp.params["b"]*pp.params["a"]))
-abline(h=pp.params["r"]/pp.params["a"])
+plot (lvppout$P~lvppout$N,ylim=c(0,max(lvppout$P)+20),type="l",xlab="Prey population size",ylab="Predator population size")
+points (x=pp.init["N"],y=pp.init["P"],col="red",pch=19)
+abline (v=pp.params["d"]/(pp.params["b"]*pp.params["a"]))
+abline (b=pp.params["r"]/(prey_k*pp.params["a"]), a = pp.params["r"]/pp.params["a"])
 
 # Plot N & P vs pp.time
 plot(lvppout$N~pp.time,type="l",xlab="pp.time",ylab="Population Size",ylim=c(0,max(max(lvout$N),max(lvout$P))+50))
@@ -429,25 +437,20 @@ legend(x="topright",col=c("black","red"),lty=1,legend=c("Prey","Predator"),bty="
 --- bg:#404040
 
 ## General approach to solving ODEs
-
-> 1. Create a new function to perform the actual calculations at each time step.
+<br>
+> 1. Create a new ***user-defined*** function to perform the actual calculations at each time step.
 > 2. Define parameters to run with the functions 
 > 3. Run the ODE, save the output to a dataframe
+<br>
+> 4. Party
 
 --- bg:#404040
 
 ## Improvements
 
-<br>
-
-> - ODEs have <font color = > steady-states </font>
+> - ODEs have <font color = #FF6161 > steady-states </font>
 <br>
 > - $$ \hat{N_{1}} = K + \alpha * N_{2} $$
-
-
---- bg:#404040
-
-## Improvements
 
 
 ```r
@@ -471,9 +474,6 @@ steady.lvout=floor(lvout)
 ## Improvements
 
 > - Animate the graphs to show the growth of the populations
-<br>
-<br>
-> - Animate the graphs to show changes in steady state solution based on starting parameters
 
 --- bg:#404040
 ## Improvements
@@ -489,3 +489,13 @@ steady.lvout=floor(lvout)
 2. Karline Soetaert, Thomas Petzoldt, R. Woodrow Setzer (2010). Solving Differential Equations in R: Package deSolve Journal of Statistical Software, 33(9), 1--25. URL http://www.jstatsoft.org/v33/i09/.
 <br>
 3.  Ramnath Vaidyanathan (2012). slidify: Generate reproducible html5 slides from R markdown. R package version 0.4.5.http://ramnathv.github.com/slidify/
+
+--- bg:#404040
+## Inspiration
+<center>
+<a href="http://www.ropensci.org"><img src="images/ropensci.png" height="25%"/> </a>
+<br><br>
+<a href="http://www.github.com"><img src="images/Octocat.png" height="25%" /> </a>
+<br><br>
+<a href="http://www.rstudio.com"><img src="images/rstudio.png" height="25%" /></a>
+</center>
