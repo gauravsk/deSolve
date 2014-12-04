@@ -492,11 +492,7 @@ steady.lvout=floor(lvout)
 3.  Ramnath Vaidyanathan (2012). slidify: Generate reproducible html5 slides from R markdown. R package version 0.4.5.http://ramnathv.github.com/slidify/
 
 --- bg:#404040
-## Inspiration
-<center>
-<a href="http://www.ropensci.org"><img src="images/ropensci.png" height="25%"/> </a>
-<br><br>
-<a href="http://www.github.com"><img src="images/Octocat.png" height="25%" /> </a>
-<br><br>
-<a href="http://www.rstudio.com"><img src="images/rstudio.png" height="25%" /></a>
-</center>
+## Inspiration:
+1. ROpenSci (www.ropensci.org)
+2. GitHub (www.github.com)
+3. RStudio/Shiny (www.shiny.rstudio.com)

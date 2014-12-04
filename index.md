@@ -331,11 +331,11 @@ points(lvout$P~time,col="red",type="l",lwd=2)
 
 --- bg:#404040
 
-## Simplifying the process: source the code
+## Sourcing the code
 
 
 ```r
-source("~/grad/Dropbox/courses/fall2014/entm798v/scripts/R_project/lv_source.R")
+source("~/path/to/lv_source.R")
 
 p <- runif(n = 2, min = 50, max = 150)
 init<-c(N = floor(p[1]), P = floor (p[2])) 
@@ -491,11 +491,7 @@ steady.lvout=floor(lvout)
 3.  Ramnath Vaidyanathan (2012). slidify: Generate reproducible html5 slides from R markdown. R package version 0.4.5.http://ramnathv.github.com/slidify/
 
 --- bg:#404040
-## Inspiration
-<center>
-<a href="http://www.ropensci.org"><img src="images/ropensci.png" height="25%"/> </a>
-<br><br>
-<a href="http://www.github.com"><img src="images/Octocat.png" height="25%" /> </a>
-<br><br>
-<a href="http://www.rstudio.com"><img src="images/rstudio.png" height="25%" /></a>
-</center>
+## Inspiration:
+1. ROpenSci (www.ropensci.org)
+2. GitHub (www.github.com)
+3. RStudio/Shiny (www.shiny.rstudio.com)
